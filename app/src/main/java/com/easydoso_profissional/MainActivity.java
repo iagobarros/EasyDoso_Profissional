@@ -2,9 +2,11 @@ package com.easydoso_profissional;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +35,7 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
     TextView fullName, email, phone, verfyMessage;
-    Button verifyButton, changeProfileBtn;
+    Button verifyButton, changeProfileBtn,resetPassBtn;
     ImageView profileImage;
 
     FirebaseAuth fAuth;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         phone = findViewById(R.id.YourPhone);
         email = findViewById(R.id.YourEmail);
         fullName = findViewById(R.id.YourName);
+        resetPassBtn = findViewById(R.id.resetPassBtn);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -90,13 +94,56 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(v.getContext(), "Error : EMAIL NOT SENT.", Toast.LENGTH_SHORT);
-                            Log.d("ERROR", "EMAIL NNOT SENT" + e.getMessage());
+                            Log.d("ERROR", "EMAIL NOT SENT" + e.getMessage());
                         }
                     });
                 }
             });
 
         }
+
+
+        resetPassBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser fuser = fAuth.getCurrentUser();
+                EditText resetPassword = new EditText(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset Password");
+                passwordResetDialog.setMessage("Enter Your New Password (more than 6 character)");
+                passwordResetDialog.setView(resetPassword);
+
+                passwordResetDialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String newPassword = resetPassword.getText().toString();
+                        fuser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(MainActivity.this,"Password changed successfully.",Toast.LENGTH_SHORT);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(MainActivity.this,"Failed.",Toast.LENGTH_SHORT);
+                            }
+                        });
+
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //close the Dialog
+                    }
+                });
+
+                passwordResetDialog.create().show();
+            }
+        });
+
 
 
         //retrieve data from firebase data store
