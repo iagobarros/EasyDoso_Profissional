@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "616553441874",
+    "firebase_url": "https://easydoso-profissional.firebaseio.com",
+    "project_id": "easydoso-profissional",
+    "storage_bucket": "easydoso-profissional.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616553441874:android:537d539f2243692f158d8b",
+        "android_client_info": {
+          "package_name": "com.easydoso_profissional"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616553441874-mtit4t7kra4ibh3b7fsv6j4v9fnstr7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhRRtfbXppDrUsHLh_6XB0t39hhNp-oQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616553441874-mtit4t7kra4ibh3b7fsv6j4v9fnstr7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
