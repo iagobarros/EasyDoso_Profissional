@@ -35,7 +35,7 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
     TextView fullName, email, phone, verfyMessage;
-    Button verifyButton, changeProfileBtn,resetPassBtn;
+    Button verifyButton, changeProfileBtn, resetPassBtn, editProfileBtn;
     ImageView profileImage;
 
     FirebaseAuth fAuth;
@@ -53,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.YourEmail);
         fullName = findViewById(R.id.YourName);
         resetPassBtn = findViewById(R.id.resetPassBtn);
+        editProfileBtn = findViewById(R.id.editProfileBtn);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        StorageReference profileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -121,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
                         fuser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(MainActivity.this,"Password changed successfully.",Toast.LENGTH_SHORT);
+                                Toast.makeText(MainActivity.this, "Password changed successfully.", Toast.LENGTH_SHORT);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this,"Failed.",Toast.LENGTH_SHORT);
+                                Toast.makeText(MainActivity.this, "Failed.", Toast.LENGTH_SHORT);
                             }
                         });
 
@@ -143,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 passwordResetDialog.create().show();
             }
         });
-
 
 
         //retrieve data from firebase data store
@@ -167,6 +167,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //open EditProfile Activity
+                Intent editProfileIntent = new Intent(v.getContext(), EditProfile.class);
+
+
+                //passing data to another activity using intent
+                editProfileIntent.putExtra("fullName", fullName.getText().toString());
+                editProfileIntent.putExtra("email", email.getText().toString());
+                editProfileIntent.putExtra("phone", phone.getText().toString());
+
+                startActivity(editProfileIntent);
+
+            }
+        });
+
+
     }
 
     @Override
@@ -186,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void upluadImageToFireBase(Uri imageUri) {
         //upload image to firebase storage
-        StorageReference fileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        StorageReference fileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -201,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this,"Failed to Image Upload.",Toast.LENGTH_SHORT);
+                Toast.makeText(MainActivity.this, "Failed to Image Upload.", Toast.LENGTH_SHORT);
             }
         });
     }
