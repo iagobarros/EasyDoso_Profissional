@@ -78,7 +78,8 @@ public class EditProfile extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(EditProfile.this, "Profile Updated.", Toast.LENGTH_SHORT);
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -96,6 +97,13 @@ public class EditProfile extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

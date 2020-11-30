@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         resetPassBtn = findViewById(R.id.resetPassBtn);
         editProfileBtn = findViewById(R.id.editProfileBtn);
 
+
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -184,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }
