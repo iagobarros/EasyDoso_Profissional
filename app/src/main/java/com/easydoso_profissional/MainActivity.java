@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,8 +34,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
-    TextView fullName, email, phone, verfyMessage, yourCPF, yourService, yourLong,yourLat,yourBirth;
+    TextView fullName, email, phone, verfyMessage, yourCPF, yourService, yourLong, yourLat, yourBirth;
     Button verifyButton, changeProfileBtn, resetPassBtn, editProfileBtn;
     ImageView profileImage;
 
@@ -57,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         yourCPF = findViewById(R.id.yourCPF);
         yourService = findViewById(R.id.yourService);
         yourLong = findViewById(R.id.yourLong);
-        yourLat= findViewById(R.id.yourLat);
-        yourBirth=findViewById(R.id.yourBirth);
+        yourLat = findViewById(R.id.yourLat);
+        yourBirth = findViewById(R.id.yourBirth);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -152,21 +157,34 @@ public class MainActivity extends AppCompatActivity {
 
 
         //retrieve data from firebase data store
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                phone.setText(documentSnapshot.getString("phone"));
-                fullName.setText(documentSnapshot.getString("fullName"));
-                email.setText(documentSnapshot.getString("email"));
-                yourCPF.setText(documentSnapshot.getString("cpf"));
-                yourService.setText(documentSnapshot.getString("services"));
-                yourLong.setText(documentSnapshot.getString("location_longitude"));
-                yourLat.setText(documentSnapshot.getString("location_latitude"));
-                yourBirth.setText(documentSnapshot.getString("birthDate"));
+        DocumentReference docRef = fStore.collection("users").document(userID);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d("TAG", "DocumentSnapshot data: " + document.getData());
+
+                    Map<String, Object> userData = new HashMap<>();
+                    userData = document.getData();
+
+                    Log.d("userData : ", userData.toString());
+
+                    phone.setText(userData.get("phone").toString());
+                    fullName.setText(userData.get("fullName").toString());
+                    email.setText(userData.get("email").toString());
+                    yourCPF.setText(userData.get("cpf").toString());
+                    yourService.setText(userData.get("services").toString());
+                    yourLong.setText(userData.get("location_longitude").toString());
+                    yourLat.setText(userData.get("location_latitude").toString());
+                    yourBirth.setText(userData.get("birthDate").toString());
+
+                } else {
+                    Log.d("TAG", "No such document");
+                }
+            } else {
+                Log.d("TAG", "get failed with ", task.getException());
             }
         });
-
 
         changeProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
