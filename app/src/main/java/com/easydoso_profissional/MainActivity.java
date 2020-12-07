@@ -34,7 +34,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
-    TextView fullName, email, phone, verfyMessage;
+    TextView fullName, email, phone, verfyMessage, yourCPF, yourService, yourLong,yourLat,yourBirth;
     Button verifyButton, changeProfileBtn, resetPassBtn, editProfileBtn;
     ImageView profileImage;
 
@@ -54,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
         fullName = findViewById(R.id.YourName);
         resetPassBtn = findViewById(R.id.resetPassBtn);
         editProfileBtn = findViewById(R.id.editProfileBtn);
-
+        yourCPF = findViewById(R.id.yourCPF);
+        yourService = findViewById(R.id.yourService);
+        yourLong = findViewById(R.id.yourLong);
+        yourLat= findViewById(R.id.yourLat);
+        yourBirth=findViewById(R.id.yourBirth);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -155,6 +159,11 @@ public class MainActivity extends AppCompatActivity {
                 phone.setText(documentSnapshot.getString("phone"));
                 fullName.setText(documentSnapshot.getString("fullName"));
                 email.setText(documentSnapshot.getString("email"));
+                yourCPF.setText(documentSnapshot.getString("cpf"));
+                yourService.setText(documentSnapshot.getString("services"));
+                yourLong.setText(documentSnapshot.getString("location_longitude"));
+                yourLat.setText(documentSnapshot.getString("location_latitude"));
+                yourBirth.setText(documentSnapshot.getString("birthDate"));
             }
         });
 
@@ -177,16 +186,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //passing data to another activity using intent
-                editProfileIntent.putExtra("fullName", fullName.getText().toString());
-                editProfileIntent.putExtra("email", email.getText().toString());
-                editProfileIntent.putExtra("phone", phone.getText().toString());
+//                editProfileIntent.putExtra("fullName", fullName.getText().toString());
+//                editProfileIntent.putExtra("email", email.getText().toString());
+//                editProfileIntent.putExtra("phone", phone.getText().toString());
 
                 startActivity(editProfileIntent);
 
             }
         });
-
-
 
 
     }
@@ -231,6 +238,6 @@ public class MainActivity extends AppCompatActivity {
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), Login.class));
-        finish();
+//        finish();
     }
 }

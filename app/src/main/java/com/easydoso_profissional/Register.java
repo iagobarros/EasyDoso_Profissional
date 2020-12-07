@@ -123,6 +123,11 @@ public class Register extends AppCompatActivity {
                             user.put("fullName", fullName);
                             user.put("email", email);
                             user.put("phone", phone);
+                            user.put("cpf", "");
+                            user.put("location_longitude","");
+                            user.put("location_latitude","");
+                            user.put("services","");
+                            user.put("birthDate","");
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
