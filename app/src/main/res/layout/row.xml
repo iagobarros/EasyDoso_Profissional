@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_margin="5dp"
-            android:text="main title"
+            android:text="@string/main_title"
             android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="sub title"
+            android:text="@string/sub_title"
             android:textColor="#a9a9a9"
             android:textSize="15sp"
             android:textStyle="bold" />
