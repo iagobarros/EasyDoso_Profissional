@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_main"
     tools:context=".MainActivity">
 
     <Button
@@ -26,41 +27,41 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/verifyButton"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/verifyMessage"
         android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:text="@string/your_email_is_not_verified"
-        android:textColor="#FF0000"
+        android:textColor="#FFEB3B"
         android:textSize="10sp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/logOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <Button
         android:id="@+id/verifyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/click_to_verify_now"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
         android:textSize="10sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/logOutBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/verifyMessage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/verifyMessage" />
 
     <Button
         android:id="@+id/editPictureBtn"
@@ -100,6 +101,7 @@
         app:layout_constraintTop_toTopOf="@+id/logOutBtn"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -107,13 +109,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/full_name2"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -123,7 +125,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/email"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +141,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/phone"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +157,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/cpf2"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +173,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/services2"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,13 +189,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/longitude"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -203,7 +205,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="@string/latitude"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -218,14 +220,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="236dp"
         android:text="@string/birthdate2"
-        android:textColor="#673AB7"
+        android:textColor="#CAAEFB"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -234,6 +237,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/birthdate3"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintStart_toEndOf="@+id/textView19"
@@ -246,6 +250,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/_0"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
         app:layout_constraintStart_toEndOf="@+id/textView18"
@@ -258,6 +263,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/_0"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
         app:layout_constraintStart_toEndOf="@+id/textView17"
@@ -270,6 +276,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/services"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintStart_toEndOf="@+id/textView16"
@@ -282,6 +289,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/cpf"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView15"
         app:layout_constraintStart_toEndOf="@+id/textView15"
@@ -294,6 +302,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/phone2"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -306,6 +315,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/email2"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
         app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -318,10 +328,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:hint="@string/full_name"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toTopOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

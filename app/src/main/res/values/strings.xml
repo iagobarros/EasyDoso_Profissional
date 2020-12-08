@@ -21,7 +21,7 @@
     <string name="longitude_0">Longitude : 0</string>
     <string name="logout">logout</string>
     <string name="your_email_is_not_verified">Your Email is Not Verified!</string>
-    <string name="click_to_verify_now">CLICK TO VERIFY NOW!</string>
+    <string name="click_to_verify_now">send activation link</string>
     <string name="change_picture">Change Picture</string>
     <string name="reset_password">Reset Password</string>
     <string name="full_name2">Full Name :</string>
