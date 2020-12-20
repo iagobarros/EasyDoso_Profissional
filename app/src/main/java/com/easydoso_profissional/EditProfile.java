@@ -99,6 +99,8 @@ public class EditProfile extends AppCompatActivity {
                     emailEdit.setText(userData.get("email").toString());
                     phoneEdit.setText(userData.get("phone").toString());
 
+
+
                 } else {
                     Log.d("TAG", "No such document");
                 }
