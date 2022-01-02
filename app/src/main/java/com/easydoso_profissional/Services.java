@@ -106,7 +106,7 @@ public class Services extends AppCompatActivity {
                             } else if (position == 1) {
                                 edited.put("services", "Taxi");
                             }else  if(position==2){
-                                edited.put("services", "Electrista");
+                                edited.put("services", "Eletricista");
                             }else if(position==3){
                                 edited.put("services", "Mecanico");
                             }else if (position==4){
