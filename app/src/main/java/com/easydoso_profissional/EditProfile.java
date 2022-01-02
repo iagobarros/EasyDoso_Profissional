@@ -94,7 +94,7 @@ public class EditProfile extends AppCompatActivity {
                     editBirthDate.setText(userData.get("birthDate").toString());
                     editServiceText.setText(userData.get("services").toString());
                     editLocation_long.setText("Longitude: " + userData.get("location_longitude").toString());
-                    editLocation_lat.setText("Latutude: " + userData.get("location_latitude").toString());
+                    editLocation_lat.setText("Latitude: " + userData.get("location_latitude").toString());
                     fullNameEdit.setText(userData.get("fullName").toString());
                     emailEdit.setText(userData.get("email").toString());
                     phoneEdit.setText(userData.get("phone").toString());
